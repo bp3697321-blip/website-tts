@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TTS GRATIS INDONESIA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2d3436;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #636e72;
+            font-size: 1.1rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #00b894;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 10px 5px;
+        }
+        
+        .badge.free {
+            background: #00b894;
+        }
+        
+        .badge.id {
+            background: #0984e3;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 20px;
+            font-size: 18px;
+            border: 3px solid #dfe6e9;
+            border-radius: 15px;
+            resize: vertical;
+            margin: 25px 0;
+            transition: border 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #6c5ce7;
+        }
+        
+        .controls {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .control-group {
+            margin: 20px 0;
+        }
+        
+        .control-group label {
+            display: block;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .speed-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 4px;
+            background: #dfe6e9;
+        }
+        
+        #speedValue {
+            font-weight: bold;
+            color: #6c5ce7;
+            min-width: 40px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        #generateBtn {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+        }
+        
+        #clearBtn {
+            background: #dfe6e9;
+            color: #2d3436;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #636e72;
+        }
+        
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #6c5ce7;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        audio {
+            width: 100%;
+            margin-top: 25px;
+            border-radius: 10px;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .info-box h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+            }
+            .container {
+                padding: 25px;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-microphone-alt"></i> TTS INDONESIA GRATIS</h1>
+            <p>Website Text-to-Speech dengan suara natural - 100% Gratis!</p>
+            <div>
+                <span class="badge free"><i class="fas fa-check-circle"></i> Tanpa API Key</span>
+                <span class="badge id"><i class="fas fa-flag"></i> Bahasa Indonesia</span>
+            </div>
+        </div>
+        
+        <textarea id="textInput" placeholder="Ketik atau paste teks Bahasa Indonesia di sini...
+Contoh: Halo! Selamat datang di website Text-to-Speech gratis. Website ini menggunakan teknologi suara bawaan browser modern. Coba ketik teks Anda sendiri di sini, lalu klik tombol 'Generate Suara'."></textarea>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="speedSlider">
+                    <i class="fas fa-tachometer-alt"></i> Kecepatan Suara:
+                    <span id="speedValue">1.0x</span>
+                </label>
+                <div class="speed-container">
+                    <span style="color:#636e72;">Lambat</span>
+                    <input type="range" id="speedSlider" min="0.5" max="2.0" step="0.1" value="1.0">
+                    <span style="color:#636e72;">Cepat</span>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label><i class="fas fa-info-circle"></i> Status:</label>
+                <div id="statusText" style="color:#00b894;">
+                    <i class="fas fa-check"></i> Sistem TTS siap digunakan
+                </div>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <button id="generateBtn" onclick="generateSpeech()">
+                <i class="fas fa-play"></i> GENERATE SUARA
+            </button>
+            <button id="clearBtn" onclick="clearText()">
+                <i class="fas fa-trash"></i> HAPUS TEKS
+            </button>
+        </div>
+        
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Memproses suara... Harap tunggu sebentar.</p>
+        </div>
+        
+        <audio id="audioPlayer" controls></audio>
+        
+        <div class="info-box">
+            <h4><i class="fas fa-lightbulb"></i> Cara Menggunakan:</h4>
+            <ul>
+                <li><strong>Ketik teks</strong> Bahasa Indonesia di kotak atas</li>
+                <li><strong>Atur kecepatan</strong> dengan slider jika perlu</li>
+                <li><strong>Klik "Generate Suara"</strong> untuk mendengarkan</li>
+                <li><strong>Gunakan kontrol audio</strong> untuk pause/play ulang</li>
+                <li>Website ini menggunakan <strong>Web Speech API</strong> bawaan browser</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Dibuat dengan <i class="fas fa-heart" style="color:#e74c3c;"></i> menggunakan teknologi browser modern</p>
+            <p><small>Kompatibel dengan Chrome, Edge, Safari. Pastikan speaker Anda aktif.</small></p>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================
+        // TTS GRATIS INDONESIA - JavaScript
+        // ============================================
+        
+        console.log('🚀 TTS Website initialized');
+        
+        // Elemen DOM
+        const textInput = document.getElementById('textInput');
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+        const generateBtn = document.getElementById('generateBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const loading = document.getElementById('loading');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const statusText = document.getElementById('statusText');
+        
+        // Inisialisasi saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOM fully loaded');
+            
+            // Update kecepatan display
+            updateSpeedDisplay();
+            
+            // Setup event listeners
+            speedSlider.addEventListener('input', updateSpeedDisplay);
+            textInput.addEventListener('input', updateCharCount);
+            
+            // Cek dukungan browser
+            checkBrowserSupport();
+            
+            // Isi teks contoh jika kosong
+            if (!textInput.value.trim()) {
+                textInput.value = `Halo! Selamat datang di website Text-to-Speech gratis.
+
+Fitur yang tersedia:
+✅ 100% Gratis - Tanpa API Key
+✅ Bahasa Indonesia
+✅ Atur kecepatan suara
+✅ Kontrol audio lengkap
+
+Coba ketik teks Anda di sini, lalu klik "GENERATE SUARA"!`;
+                updateCharCount();
+            }
+            
+            // Load voices
+            loadVoices();
+        });
+        
+        // Fungsi utama: Generate suara
+        function generateSpeech() {
+            const text = textInput.value.trim();
+            
+            // Validasi
+            if (!text) {
+                showMessage('⚠️ Masukkan teks terlebih dahulu!', 'warning');
+                return;
+            }
+            
+            if (text.length > 5000) {
+                showMessage('⚠️ Teks terlalu panjang (maksimal 5000 karakter)', 'warning');
+                return;
+            }
+            
+            // Cek dukungan browser
+            if (!('speechSynthesis' in window)) {
+                showMessage('❌ Browser Anda tidak mendukung Text-to-Speech', 'error');
+                return;
+            }
+            
+            // Tampilkan loading
+            showLoading(true);
+            
+            // Buat utterance (suara)
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Konfigurasi
+            utterance.lang = 'id-ID';
+            utterance.rate = parseFloat(speedSlider.value);
+            utterance.pitch = 1.0;
+            utterance.volume = 1;
+            
+            // Cari suara Indonesia
+            const voices = window.speechSynthesis.getVoices();
+            const idVoice = voices.find(voice => 
+                voice.lang.includes('ID') || voice.lang.includes('id') || voice.lang === 'id-ID'
+            );
+            
+            if (idVoice) {
+                utterance.voice = idVoice;
+                console.log('🎙️ Menggunakan voice:', idVoice.name);
+            }
+            
+            // Event handlers
+            utterance.onstart = function() {
+                console.log('▶️ Suara mulai diputar');
+                showMessage('🔊 Suara sedang diputar...', 'info');
+            };
+            
+            utterance.onend = function() {
+                console.log('✅ Suara selesai');
+                showLoading(false);
+                showMessage('✅ Suara selesai diputar', 'success');
+            };
+            
+            utterance.onerror = function(event) {
+                console.error('❌ Error:', event);
+                showLoading(false);
+                showMessage('❌ Error: Gagal memutar suara', 'error');
+            };
+            
+            // Hentikan suara yang sedang berjalan
+            window.speechSynthesis.cancel();
+            
+            // Mulai bicara
+            window.speechSynthesis.speak(utterance);
+            
+            // Update status
+            statusText.innerHTML = '<i class="fas fa-volume-up"></i> Memutar suara...';
+            statusText.style.color = '#6c5ce7';
+        }
+        
+        // Fungsi bantuan
+        function updateSpeedDisplay() {
+            speedValue.textContent = speedSlider.value + 'x';
+        }
+        
+        function updateCharCount() {
+            const count = textInput.value.length;
+            // Optional: Tambah display karakter count jika mau
+        }
+        
+        function clearText() {
+            textInput.value = '';
+            updateCharCount();
+            showMessage('📝 Teks telah dibersihkan', 'info');
+        }
+        
+        function showLoading(show) {
+            if (show) {
+                loading.style.display = 'block';
+                generateBtn.disabled = true;
+                generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
+            } else {
+                loading.style.display = 'none';
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<i class="fas fa-play"></i> GENERATE SUARA';
+            }
+        }
+        
+        function showMessage(message, type = 'info') {
+            // Warna berdasarkan type
+            const colors = {
+                'success': '#00b894',
+                'error': '#e74c3c',
+                'warning': '#f39c12',
+                'info': '#3498db'
+            };
+            
+            statusText.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
+            statusText.style.color = colors[type] || colors.info;
+            
+            // Auto-clear setelah 5 detik untuk pesan selain error
+            if (type !== 'error') {
+                setTimeout(() => {
+                    statusText.innerHTML = '<i class="fas fa-check"></i> Sistem TTS siap digunakan';
+                    statusText.style.color = '#00b894';
+                }, 5000);
+            }
+        }
+        
+        function checkBrowserSupport() {
+            if (!('speechSynthesis' in window)) {
+                showMessage('❌ Browser tidak mendukung TTS. Gunakan Chrome/Edge.', 'error');
+                generateBtn.disabled = true;
+                generateBtn.innerHTML = '<i class="fas fa-times"></i> BROWSER TIDAK SUPPORT';
+            } else {
+                console.log('✅ Browser mendukung Speech Synthesis');
+            }
+        }
+        
+        function loadVoices() {
+            // Load voices setelah beberapa detik
+            setTimeout(() => {
+                const voices = window.speechSynthesis.getVoices();
+                console.log(`🎙️ Tersedia ${voices.length} voices`);
+                
+                if (voices.length > 0) {
+                    // Cari dan tampilkan voice Indonesia
+                    const idVoices = voices.filter(v => 
+                        v.lang.includes('ID') || v.lang.includes('id')
+                    );
+                    
+                    if (idVoices.length > 0) {
+                        console.log(`✅ Found ${idVoices.length} Indonesian voices`);
+                        showMessage(`✅ Siap! ${idVoices.length} suara Indonesia tersedia`, 'success');
+                    } else {
+                        console.log('⚠️ No Indonesian voices found, using default');
+                        showMessage('⚠️ Suara Indonesia tidak ditemukan, menggunakan default', 'warning');
+                    }
+                }
+            }, 1000);
+        }
+        
+        // Export fungsi untuk penggunaan global
+        window.generateSpeech = generateSpeech;
+        window.clearText = clearText;
+    </script>
+</body>
+</html>
